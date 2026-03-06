@@ -10,7 +10,6 @@
  * - put(id, timestamp): stores the log with given id and timestamp.
  * - retrieve(start, end, granularity): returns ids of logs within the range.
  */
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,6 +29,7 @@ public class logStorageSystem {
     public logStorageSystem() {
         logEntries = new ArrayList<>();
         granularityMap = new HashMap<>();
+
         granularityMap.put("Year", 4);
         granularityMap.put("Month", 7);
         granularityMap.put("Day", 10);
@@ -44,7 +44,9 @@ public class logStorageSystem {
 
     public List<Integer> retrieve(String start, String end, String granularity) {
         List<Integer> ansId = new ArrayList<>();
+
         int subStringLength = granularityMap.get(granularity);
+
         String startTruncated = start.substring(0, subStringLength);
         String endTruncated = end.substring(0, subStringLength);
 
@@ -54,9 +56,9 @@ public class logStorageSystem {
                 ansId.add(logEntry.id);
             }
         }
-
         return ansId;
     }
+
     public static void main(String[] args) {
         logStorageSystem logSystem = new logStorageSystem();
         logSystem.put(1, "2017:01:01:23:59:59");
